@@ -56,7 +56,7 @@ describe('Form Test', () => {
       name()
         .type("Robert")
       email()
-        .type(" ")
+        .should("have.value", " ")
       password()
         .type("*****")
       agree()
@@ -64,5 +64,20 @@ describe('Form Test', () => {
       submitBtn()
       .should('be.disabled')
     })
+
+    it(`Checks for form validation if an input is left empty?`, () => {
+        name()
+        .type("Robert")
+        email()
+          .should("have.value", " ")
+        password()
+          .clear()
+          .type('wadup')
+          .should('have.value', "x")
+        agree()
+          .check()
+        submitBtn()
+        .should('be.disabled')
+    }
 
 });
