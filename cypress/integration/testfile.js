@@ -51,4 +51,18 @@ describe('Form Test', () => {
       .should('be.enabled')
     })
 
+
+    it ('Checks that submit button remains disbaled if a field is left blank', ()=>{
+      name()
+        .type("Robert")
+      email()
+        .type(" ")
+      password()
+        .type("*****")
+      agree()
+        .click()
+      submitBtn()
+      .should('be.disabled')
+    })
+
 });
