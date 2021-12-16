@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.JSONContainer{
+  margin-left: 25%;
+  border-radius: 10px;
+  width: 50%;
+  border: 10px double red;
+  color: blue;
+}
