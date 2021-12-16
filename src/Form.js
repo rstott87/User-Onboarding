@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import * as yup from "yup";
 import axios from 'axios';
+import { isCompositeComponent } from 'react-dom/test-utils';
 
 const schema= yup.object().shape({
     name: yup.string().required('name is required').min(2, 'Name is too short'),
@@ -23,7 +24,7 @@ function Form (props) {
         agree: ""
       });
       const[disabled, setDisabled] = useState(false);
-      const [post, setPost] = useState("User Data Will Go Here");
+      const [post, setPost] = useState([]);
     
       const setFormErrors = (name, value) => {
         yup.reach(schema, name).validate(value)
@@ -39,7 +40,7 @@ function Form (props) {
       }
 
       const submit = event => {
-          event.preventDefault()
+          event.preventDefault();
           const newUser = { name: formState.name.trim(), 
             email: formState.email.trim(), 
             password: formState.password.trim(), 
@@ -99,7 +100,7 @@ function Form (props) {
             />
         </label>
         <label>
-            <button disabled={disabled}>
+            <button id="submitBTN" disabled={disabled}>
             Submit
             </button>
         </label>
